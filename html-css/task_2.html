@@ -1,1 +1,147 @@
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task1_2</title>
+    <style media="screen">
+      *{margin: 0;padding: 0;}
+      ul{list-style-type: none;}
+      #nav{width: 100%;height: 50px;background-color: #000;position: fixed;top: 0;left: 0;}
+      #nav img{height: 50px;float: left;}
+      #nav ul{float: right;}
+      #nav ul li{float: left;margin-left: 15px;line-height: 50px;}
+      #nav ul li a{text-decoration: none;color: #fff;}
+
+      #bigwrap{background-color: pink;width: 100%;margin-top: 50px;padding: 5px 0;}
+      .wrap{background-color: #fff;margin: 30px;padding: 25px;box-shadow:5px 5px 2px gray; }
+      .wrap h3,h4{color: gray;margin: 10px 0;}
+      .pic{border: 1px solid gray;margin: 10px 0;padding: 15px;width: 250px;text-align: center;}
+      ol{margin-left: 30px;}
+      #firsttab{width: 100%;border-right: 1px solid gray;border-bottom: 1px solid gray;text-align: center;}
+      #firsttab td{border-left: 1px solid gray;border-top: 1px solid gray;}
+      #firsttab th{background-color:#333333;color: #fff;}
+      #total{background:#cdcdcd }
+      #sectab{border-spacing: 25px;}
+      .fir{text-align: right;}
+      select{}
+      input[type="submit"]{background-color:#3e99ff;color:white;width: 100%;height: 35px;border: 0px;border-radius: 10px;cursor: pointer;}
+      input[type="radio"]{background-color:blue;color:white;}
+      #foot{width: 100%;height: 100px;background-color: #000;color: #fff;text-align: center;line-height: 100px;}
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <img src="./images/logo.png" alt="logo">
+      <ul>
+        <li><a href="#">导航链接一</a></li>
+        <li><a href="#">导航链接二</a></li>
+        <li><a href="#">导航链接三</a></li>
+        <li><a href="#">导航链接四</a></li>
+      </ul>
+    </div>
+
+    <div id="bigwrap">
+      <div class="wrap">
+        <h2>文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <h4>文章作者 发表时间</h4>
+        <p>这是一个很长很长很长的段落，这是一个很长很长很长的段落，这是一个很长很长很长的段落，这是一个很长很长很长的段落，这是一个很长很长很长的段落，这是一个很长很长很长的段落</p>
+        <p>这是一个很长很长很长的段落，这是一个很长很长很长的段落，<a href="http://www.baidu.com">这里有个链接到www.baidu.com</a></p>
+        <img src="images/dog.jpg" alt="">
+      </div>
+
+      <div class="wrap">
+        <h2>另一文章一级标题</h2>
+        <h4>文章作者 发表时间</h4>
+        <ul>
+          <li>列表项目1</li>
+          <li>列表项目2</li>
+          <li>列表项目3</li>
+        </ul>
+        <h2>图片</h2>
+        <div class="pic">
+          <p>好看的图片</p>
+          <img src="images/dog.jpg" alt="">
+        </div>
+        <div class="pic">
+          <p>好看的图片</p>
+          <img src="images/dog.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="wrap">
+        <h2>最后一篇文章一级标题</h2>
+        <h4>文章作者 发表时间</h4>
+        <ol>
+          <li>排名1</li>
+          <li>排名2</li>
+          <li>排名3</li>
+        </ol>
+        <p>下面是一个表格</p>
+        <table id="firsttab">
+          <tr>
+            <th>表头</th>
+            <th>表头</th>
+            <th>表头</th>
+          </tr>
+          <tr>
+            <td>内容</td>
+            <td>内容</td>
+            <td><a href="#">操作</a></td>
+          </tr>
+          <tr>
+            <td>内容</td>
+            <td>内容</td>
+            <td><a href="#">操作</a></td>
+          </tr>
+          <tr id="total">
+            <td>总计</td>
+            <td colspan="2" style="text-align:center">1000</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="wrap">
+        <h2>这里以后是一个侧栏，这是侧栏的标题</h2>
+        <form action="index.html" method="post">
+          <table id="sectab">
+            <tr>
+              <td class="fir">请输入邮箱地址：</td><td><input type="text" name="" value="这是一个文本输入框"></td>
+            </tr>
+            <tr>
+              <td></td><td style="color:gray;">邮箱地址请按要求格式输入</td>
+            </tr>
+            <tr>
+              <td class="fir">请输入密码：</td><td><input type="password" name="" value="这是一个文本输入框"></td>
+            </tr>
+            <tr>
+              <td class="fir">请重复输入密码：</td><td><input type="password" name="" value="这是一个文本输入框"></td>
+            </tr>
+            <tr>
+              <td class="fir">性别：</td><td><input type="radio" name="sex" value="man" checked="checked">男
+                  <input type="radio" name="sex" value="woman">女</td>
+            </tr>
+            <tr>
+              <td class="fir">城市：</td><td>  <select class="" name="">
+                  <option value="1">北京</option>
+                </select></td>
+            </tr>
+            <tr>
+              <td class="fir">爱好：</td><td><label><input type="checkbox" name="hob" value="">运动</label>
+              <label><input type="checkbox" name="hob" value="">艺术</label>
+              <label><input type="checkbox" name="hob" value="">科学</label></td>
+            </tr>
+            <tr>
+              <td class="fir">个人描述：</td><td><textarea name="name" rows="5" cols="50" value="输入个人描述"></textarea></td>
+            </tr>
+          </table>
+          <input type="submit" name="" value="确认提交">
+        </form>
+      </div>
+    </div>
+    <div id="foot">
+          版权所有&copy;
+    </div>
+  </body>
+</html>

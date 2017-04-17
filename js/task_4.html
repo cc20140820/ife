@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 04</title>
+    <style media="screen">
+      #display li{list-style-type: none;float: left;width: 70px;height: 70px;background-color: #eee;text-align: center;line-height: 70px;margin: 5px;}
+    </style>
+  </head>
+  <body>
+    <input type="text" id="num">
+    <button type="button" name="button" id="leftin">左侧入</button>
+    <button type="button" name="button" id="rightin">右侧入</button>
+    <button type="button" name="button" id="leftout">左侧出</button>
+    <button type="button" name="button" id="rightout">右侧出</button>
+    <ul id="display">
+
+    </ul>
+    <script type="text/javascript">
+      //创建id选择器
+      $=function(id){
+        return document.getElementById(id);
+      }
+
+      var display = $('display'),
+          leftin = $('leftin'),
+          rightin = $('rightin'),
+          leftout = $('leftout'),
+          rightout = $('rightout');
+
+      leftin.addEventListener("click",function(){
+          var LI=display.getElementsByTagName("li");
+          var li = document.createElement("li");
+          var num=Number($("num").value);
+          if (!num) {
+            alert("请输入数字");
+            return;
+          }
+          else {
+              li.innerHTML=num;
+          }
+
+          if (!LI) {
+            display.appendChild(li);
+          }
+          else {
+            display.insertBefore(li,LI[0]);
+          }
+      })
+
+      rightin.addEventListener("click",function(){
+        var li = document.createElement("li");
+        var num=Number($("num").value);
+        if (!num) {
+          alert("请输入数字");
+          return;
+        }
+        else {
+            li.innerHTML=num;
+        }
+        display.appendChild(li);
+      })
+
+      leftout.addEventListener("click",function(){
+          var LI=display.getElementsByTagName("li");
+          if (LI.length==0) {
+            alert("请先添加！");
+            return;
+          }
+          display.removeChild(LI[0]);
+      })
+
+      rightout.addEventListener("click",function(){
+        var LI=display.getElementsByTagName("li");
+        if (LI.length==0) {
+          alert("请先添加！");
+          return;
+        }
+        display.removeChild(LI[LI.length-1]);
+      })
+    </script>
+  </body>
+</html>

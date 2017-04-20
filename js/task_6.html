@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 05</title>
+    <style media="screen">
+      #display li{
+                  list-style-type: none;
+                  float: left;
+                  width: 10px;
+                  background-color: #eee;
+                  margin: 1px;
+                  position: relative;
+                }
+      textarea{
+        width: 200px;
+        height: 100px;
+      }
+      button,input{
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+      <textarea id="text" placeholder="输入英文中文或者数字"></textarea>
+      <input class="btn" type="button" id="leftin" value="左侧入">
+      <input class="btn" type="button" id="rightin" value="右侧入">
+      <input class="btn" type="button" id="leftout" value="左侧出">
+      <input class="btn" type="button" id="rightout" value="右侧出">
+      <input id="word" type="text" placeholder="输入查询词">
+      <input class="btn" id="search" type="button" value="查询">
+      <div id="box"></div>
+      <script type="text/javascript">
+          $ = function(id){
+            return document.getElementById(id);
+          }
+
+          var data = [];
+          var Arr = [];
+
+          var buttons = document.getElementsByClassName('btn');
+          var box = $('box');
+
+          //给每一个button添加一个点击事件
+          for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click',distribution);
+          }
+
+          function distribution(){
+            box.innerHTML="";
+            var type=this.getAttribute('id');
+            //将textarea中分割存入数组
+            var text=$('text').value;
+            Arr=text.split(/\n|,|、| |，|\r|;|；/);
+            if(type == "leftin"||type == "rightin"){
+                for(var i=0;i<Arr.length;i++){
+                    if((!/[\u4E00-\u9FA5|a-z|A-Z|0-9]/.test(Arr[i]))){
+                        alert("请输入中文英文或数字");
+                    }
+                }
+            }
+
+            switch (type) {
+              case 'leftin':
+                  for (var i = 0; i < Arr.length; i++) {
+                    data.unshift(Arr[i]);
+                  }
+                break;
+              case 'rightin':
+                  for (var i = 0; i < Arr.length; i++) {
+                    data.push(Arr[i]);
+                  }
+                break;
+              case 'leftout':
+                    data.shift();
+                break;
+              case 'rightout':
+                    data.pop();
+                break;
+              default:
+
+            }
+            showdata();
+            if (type=='search') {
+              search();
+            }
+          }
+
+          function showdata(){
+            for (var i = 0; i < data.length; i++) {
+              var div = document.createElement('div');
+              div.innerHTML = data[i];
+              box.appendChild(div);
+            }
+          }
+
+          function search(){
+            var word = $('word').value;
+            var Divs = box.getElementsByTagName('div');
+            if(Divs.length==0){
+                return ;
+            }
+            for(var i=0;i<Divs.length;i++){
+                //如果元素中有匹配到word的词 则颜色改变
+                if( Divs[i].innerText.match(word)){
+                    Divs[i].style.color = "blue";
+                }
+            }
+          }
+      </script>
+  </body>
+</html>

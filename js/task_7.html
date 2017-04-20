@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 07</title>
+    <style media="screen">
+    body{
+      width: 880px;
+      height: 300px;
+      border: 2px solid seagreen;
+      border-radius: 5px;
+      margin:auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      flex-flow:column wrap;
+      justify-content:space-around;
+      align-items:center;
+    }
+    #root,.presentation{
+      width: 400px;
+      height: 200px;
+      border: 1px solid #ccc;
+      border-radius:5px;
+      margin:10px;
+    }
+    div{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      // margin-left: 10px;
+    }
+    button{
+      width: 150px;
+      height: 25px;
+      outline: none;
+      color: white;
+      background: seagreen;
+    }
+    button:hover{
+      background: orange;
+      cursor:pointer;
+    }
+    #left,#right{
+      width: 180px;
+      height: 120px;
+      border:1px solid #ccc;
+    }
+    #right-subl,#right-subr,
+    #left-subr,#left-subl{
+      width: 80px;
+      height: 60px;
+      border:1px solid #ccc;
+    }
+    #right-subl-subl,#right-subl-subr,
+    #right-subr-subl,#right-subr-subr,
+    #left-subr-subr,#left-subr-subl,
+    #left-subl-subr,#left-subl-subl{
+      width: 30px;
+      height: 30px;
+      border:1px solid #ccc;
+    }
+    .current{
+			background: blue;
+		}
+    </style>
+  </head>
+  <body>
+    <div id="root">A
+      <div id="left">B
+        <div id="left-subl">D
+          <div id="left-subl-subl">H</div>
+          <div id="left-subl-subr">I</div>
+        </div>
+        <div id="left-subr">E
+          <div id="left-subr-subl">J</div>
+          <div id="left-subr-subr">K</div>
+        </div>
+      </div>
+      <div id="right">C
+        <div id="right-subl">F
+          <div id="right-subl-subl">L</div>
+          <div id="right-subl-subr">M</div>
+        </div>
+        <div id="right-subr">G
+          <div id="right-subr-subl">N</div>
+          <div id="right-subr-subr">O</div>
+        </div>
+      </div>
+    </div>
+
+    <span>
+      <button>Preorder(DLR)</button>
+      <button>Inorder(LDR)</button>
+      <button>Postorder(LRD)</button>
+    </span>
+    <script type="text/javascript">
+    const 	btn = document.querySelectorAll('button'),
+        div = document.querySelectorAll('div'),
+        root = document.getElementById('root');
+    let 	arr;
+    //背景白
+    function whiteStyle(){
+      for(let length =div.length-1,i=length;i>=0;i--){
+        div[i].style.background='white';
+      }
+    }
+    //style变化
+    function style(){
+      let style = setInterval(function(){
+        whiteStyle();
+        let s = arr.shift();
+        if(s){
+          s.style.background ='blue';
+        }else{
+          clearInterval(style);
+        }
+      },1000)
+    }
+    //树遍历
+    var tree = {
+      travel:{
+        dlr:function(ele){
+          arr.push(ele);
+          if(ele.children.length !== 0){
+            this.dlr(ele.children[0]);
+            this.dlr(ele.children[1]);
+          }
+        },
+        ldr:function(ele){
+          if(ele){
+            this.ldr(ele.children[0]);
+            arr.push(ele);
+            this.ldr(ele.children[1]);
+          }
+        },
+        lrd:function(ele){
+          if(ele){
+            this.lrd(ele.children[0]);
+            this.lrd(ele.children[1]);
+            arr.push(ele);
+          }
+        }
+      }
+    }
+    //按钮
+  	btn[0].onclick = function(){
+  		arr=[];
+  		tree.travel.dlr(root);
+  		style();
+
+  	}
+  	btn[1].onclick = function(){
+  		arr=[];
+  		tree.travel.ldr(root);
+  		style();
+  	}
+  	btn[2].onclick = function(){
+  		arr=[];
+  		tree.travel.lrd(root);
+  		style();
+  	}
+    </script>
+  </body>
+</html>

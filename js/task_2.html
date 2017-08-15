@@ -50,8 +50,8 @@ var aqiData = [
     }
   }
   //将newNum数组的值显示出来
+  var n=0;
   for (var i = 0; i < newNum.length; i++) {
-    var n=0;
     var li=document.createElement("li");
     li.innerHTML="第" + China[n] + "名: " + newNum[i];
     list.appendChild(li);
